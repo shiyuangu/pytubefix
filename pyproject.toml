@@ -10,7 +10,7 @@ authors = [
 ]
 description = "Python3 library for downloading YouTube Videos."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 license = {text = "MIT license"}
 keywords = ["youtube", "download", "video", "stream",]
 classifiers = [

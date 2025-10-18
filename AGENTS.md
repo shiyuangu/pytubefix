@@ -19,3 +19,13 @@ Pytest drives the suite; place new cases alongside the module they cover using t
 
 ## Commit & Pull Request Guidelines
 Keep commits focused and phrased in the imperative mood (`add fallback client retry`). Reference issues inline when available and group versioned release work via `build.sh`. Pull requests should summarize behavioral changes, list verification steps (`poetry run pytest`), call out API or CLI impacts, and attach screenshots for CLI UX adjustments when helpful. Link to relevant documentation updates under `docs/` and request review from maintainers owning the touched modules.
+
+## Repo Insights (2025-01-06)
+- `pytubefix/__main__.py`: defines the synchronous `YouTube` interface, orchestrating HTML fetch via `request`, metadata parsing from `extract`, and stream instantiation using the Borg-style `Monostate`. Falls back across clients and manages OAuth/po-token handling before exposing `StreamQuery`.
+- `pytubefix/async_youtube.py`: mirrors the sync client but swaps network IO for `AsyncHTTPClient`, reusing the same extraction pipeline and fallback logic while keeping a shared async session singleton.
+- `pytubefix/streams.py`: `Stream` objects wrap player manifest entries, parsing mime info, codecs, size, SABR metadata, and exposing download helpers (`download`, `seq_stream`) that rely on `request.stream` and adaptive bitrate utilities in `sabr`.
+- `pytubefix/innertube.py`: houses client definitions for Innertube API (headers, tokens, requirements) plus `InnerTube` class with OAuth/po-token caching and request helpers (`player`, `next`, `browse`, etc.).
+- `pytubefix/cli.py`: CLI entrypoint wiring argparse commands to common download flows (audio-only, resolution selection, ffmpeg merging) and progress reporting.
+- `pytubefix/contrib/playlist.py`: playlist abstraction that paginates via `InnerTube.browse`, reuses `DeferredGeneratorList`, and instantiates `YouTube` objects per video; sibling modules handle channel/search.
+- `pytubefix/request.py` & `async_http_client.py`: synchronous and async HTTP helpers adding retrying range requests, sequential segment support, and size discovery used by stream downloads.
+- Key support modules: `extract.py` (HTML/player parsing, cipher setup, metadata), `cipher.py`/`jsinterp.py` (signature decipher), `helpers.py` (filename sanitizing, caching, logging), `botGuard/bot_guard.py` (Node-backed poToken generation), `sabr/` (server-assisted adaptive bitrate logic).

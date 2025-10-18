@@ -148,3 +148,6 @@ env/
 __cache__/
 
 debug.py
+
+# added by sgu
+sgu_adhoc*

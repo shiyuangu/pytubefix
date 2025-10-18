@@ -10,7 +10,7 @@ authors = [
 ]
 description = "Python3 library for downloading YouTube Videos."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 license = {text = "MIT license"}
 keywords = ["youtube", "download", "video", "stream",]
 classifiers = [
@@ -54,3 +54,8 @@ include-package-data = true
 "pytubefix" = ["botGuard/vm/*.js", "sig_nsig/vm/*.js"]
 
 
+
+[dependency-groups]
+dev = [
+    "ipykernel (>=7.0.1,<8.0.0)"
+]

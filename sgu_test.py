@@ -7,7 +7,14 @@ logger = logging.getLogger("pytubefix").setLevel(logging.INFO)
 #logger.setLevel(logging.INFO)  # cannot set level in basicConfig which would be overwritten by aws.
 #url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 #url = 'https://www.youtube.com/watch?v=l3rDobdu1gU'
-url = 'https://www.youtube.com/watch?v=020g-0hhCAU'
+#url = 'https://www.youtube.com/watch?v=020g-0hhCAU'
+#url = 'https://www.youtube.com/watch?v=U5Inxa3jK0Y'
+#url = 'https://www.youtube.com/watch?v=u6GatvmKd3s'
+#url = 'https://www.youtube.com/watch?v=DHMxk2KvAyI'
+#url = 'https://www.youtube.com/watch?v=GE3uj-TB-oo'
+#fname= "playlist_baby_tiger_long"
+url = 'https://www.youtube.com/watch?v=dXa-ZxpXf6s'
+fname= "playlist_baby_tiger_chinese"
 # to reset oauth cache: https://pytubefix.readthedocs.io/en/latest/user/auth.html#reset-cache
 yt = YouTube(url,  use_oauth=True) 
 #yt = YouTube(url, client='WEB') # look like client='WEB' has no effect for use_oauth=True which always use client='TV' see the Youtube.ctor code
@@ -24,7 +31,6 @@ audio_stream = yt.streams.filter(adaptive=True, file_extension='mp4', only_audio
 print('video_stream:',video_stream)
 print('audio_stream:',audio_stream)
 output_path = '/Users/sgu/Downloads'
-fname= "baby_shark"
 video_stream.download(filename=f'{fname}_video.mp4', output_path=output_path)
 audio_stream.download(filename=f'{fname}_audio.mp4', output_path=output_path)
 # Combine video and audio using ffmpeg

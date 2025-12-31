@@ -11,13 +11,14 @@ authors = [
 description = "Python3 library for downloading YouTube Videos."
 readme = "README.md"
 requires-python = ">=3.12"
-license = {text = "MIT license"}
+
+license = "MIT"
+license-files = ["LICENSE"]
 keywords = ["youtube", "download", "video", "stream",]
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
 	"Environment :: Console",
 	"Intended Audience :: Developers",
-	"License :: OSI Approved :: MIT License",
 	"Natural Language :: English",
 	"Operating System :: OS Independent",
 	"Programming Language :: Python :: 3.7",
@@ -47,7 +48,6 @@ pytubefix = "pytubefix.cli:main"
 include = ["pytubefix*"]
 
 [tool.setuptools]
-license-files = ["LICENSE"]
 include-package-data = true
 
 [tool.setuptools.package-data]

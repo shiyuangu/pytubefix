@@ -5,6 +5,7 @@ interfaces returns raw results. These should instead be parsed to extract
 the useful information for the end user.
 """
 # Native python imports
+import logging 
 import json
 import os
 import pathlib
@@ -14,6 +15,9 @@ from urllib import parse
 
 from pytubefix import request
 from pytubefix.helpers import reset_cache
+
+#logging added by sgu
+logger = logging.getLogger(__name__)
 
 # YouTube on TV client secrets
 _client_id = '861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com'
@@ -598,6 +602,10 @@ class InnerTube:
 
         # Try to load from file if specified
         self.token_file = token_file or _token_file
+
+        #added by sgu
+        logger.info("token file location:%s", self.token_file)
+
         if self.use_oauth and self.allow_cache and os.path.exists(self.token_file):
             with open(self.token_file) as f:
                 data = json.load(f)
